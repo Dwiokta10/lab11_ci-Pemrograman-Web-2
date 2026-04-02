@@ -394,6 +394,8 @@ User membuka halaman
 Jadi alurnya:
 User → Controller → Model → Database → Controller → View → User
 <img width="1507" height="707" alt="Cuplikan layar 2026-04-02 155041" src="https://github.com/user-attachments/assets/0aca9da6-c797-434a-bdc0-b2ab041ec855" />
+<img width="1290" height="503" alt="Cuplikan layar 2026-04-02 155829" src="https://github.com/user-attachments/assets/1db0c38b-1344-499c-ba45-eb1c6123d96c" />
+
 
 
 
