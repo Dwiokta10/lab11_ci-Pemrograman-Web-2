@@ -396,19 +396,3 @@ Jadi alurnya:
 *User → Controller → Model → Database → Controller → View → User*
 
 ---
-
-# Kesimpulan (Versi “Paham Banget”)
-
-Dari praktikum ini saya memahami bahwa:
-
-* CodeIgniter menggunakan konsep *MVC* untuk memisahkan logic
-* CRUD adalah dasar dari hampir semua aplikasi web
-* Setiap bagian punya peran:
-
-  * Model → data
-  * View → tampilan
-  * Controller → pengatur alur
-
-Saya juga memahami bagaimana data mengalir dari user hingga ke database dan kembali ditampilkan ke user.
-
----
