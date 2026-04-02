@@ -393,7 +393,7 @@ User → Controller → Model → Database → Controller → View → User
 <img width="1290" height="503" alt="Cuplikan layar 2026-04-02 155829" src="https://github.com/user-attachments/assets/1db0c38b-1344-499c-ba45-eb1c6123d96c" />
 <img width="900" height="553" alt="Cuplikan layar 2026-04-02 160020" src="https://github.com/user-attachments/assets/3995eeef-9b6d-43d6-979b-2ffdf9c45758" />
 
-# Praktikum 3 
+## Pertemuan 3 
 
 ## Langkah-Langkah Praktikum
 
@@ -573,7 +573,7 @@ Pada praktikum ini saya memahami bahwa:
 <img width="1114" height="546" alt="Cuplikan layar 2026-04-02 161229" src="https://github.com/user-attachments/assets/8534d712-efde-48f1-9325-bf6918f6dddc" />
 <img width="1066" height="527" alt="Cuplikan layar 2026-04-02 161250" src="https://github.com/user-attachments/assets/77121c8d-d63c-41b6-92d4-65492cc25431" />
 
-# Praktikum 4
+# Pertemuan 4
 Langkah-Langkah Praktikum
 
 1. Membuat Database User
