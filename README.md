@@ -207,9 +207,14 @@ Tambahkan CSS di folder:
 ```
 public/style.css
 ```
-
-
-
+<img width="1920" height="1128" alt="Cuplikan layar 2026-04-01 115619" src="https://github.com/user-attachments/assets/262982fa-a0f5-48e2-9309-138f7387cda7" />
+<img width="1920" height="1128" alt="Cuplikan layar 2026-04-01 121242" src="https://github.com/user-attachments/assets/e0410369-0080-42e1-a86d-c21e5ab7c32c" />
+<img width="1920" height="1128" alt="Cuplikan layar 2026-04-01 122718" src="https://github.com/user-attachments/assets/a53a3efc-ed41-4ebe-a33a-0e69bc911c69" />
+<img width="1920" height="1128" alt="Cuplikan layar 2026-04-01 123319" src="https://github.com/user-attachments/assets/b6c19ad1-b647-4fac-8bca-16b1c8d38bf8" />
+<img width="1920" height="1128" alt="Cuplikan layar 2026-04-01 123059" src="https://github.com/user-attachments/assets/0a076b1a-d0a0-4f10-9f10-15047a23da5d" />
+<img width="1920" height="1128" alt="Cuplikan layar 2026-04-01 124344" src="https://github.com/user-attachments/assets/fbf9cb7b-76bc-4a57-bd24-7adb03cdcf3e" />
+<img width="1920" height="1128" alt="Cuplikan layar 2026-04-01 130555" src="https://github.com/user-attachments/assets/d5b9f730-e157-4493-90bf-77dec4d05419" />
+<img width="1920" height="1128" alt="Cuplikan layar 2026-04-01 131529" src="https://github.com/user-attachments/assets/a031938b-5e24-42f9-9790-04296e5f2ccb" />
 
 ## Pertemuan 2
 ## ⚙️ 1. Persiapan Awal
