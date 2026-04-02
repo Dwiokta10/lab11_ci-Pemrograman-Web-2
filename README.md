@@ -16,7 +16,7 @@ Pada praktikum ini, saya mempelajari:
 * Cara membuat aplikasi sederhana menggunakan CodeIgniter 4
 
 
-## Langkah-langkah Pertemuan 1 
+## Pertemuan 1 
 
 1. Persiapan
    Sebelum memulai, saya melakukan konfigurasi pada XAMPP:
@@ -249,10 +249,6 @@ Saya menganggap tabel ini seperti “tempat penyimpanan artikel”, jadi saya me
 * slug → URL yang rapi
 * status → status publish
 * gambar → gambar artikel
-
-Jadi dari awal saya sudah berpikir:
-*“Data apa saja yang dibutuhkan oleh aplikasi?”*
-
 ---
 
 3. Menghubungkan Database ke CodeIgniter
@@ -397,8 +393,460 @@ User → Controller → Model → Database → Controller → View → User
 <img width="1290" height="503" alt="Cuplikan layar 2026-04-02 155829" src="https://github.com/user-attachments/assets/1db0c38b-1344-499c-ba45-eb1c6123d96c" />
 <img width="900" height="553" alt="Cuplikan layar 2026-04-02 160020" src="https://github.com/user-attachments/assets/3995eeef-9b6d-43d6-979b-2ffdf9c45758" />
 
+# Praktikum 3 
+
+## Langkah-Langkah Praktikum
+
+### 1. Persiapan
+
+* Membuka project sebelumnya lab7_php_ci
+* Menggunakan text editor (VSCode)
+* Menjalankan server lokal
+
+---
+
+### 2. Membuat Layout Utama
+
+Lokasi:
 
 
+app/Views/layout/main.php
 
 
+Penjelasan:
 
+* Membuat template utama website
+* Berisi:
+
+  * Header
+  * Navbar
+  * Content (dinamis)
+  * Sidebar
+  * Footer
+
+Bagian penting:
+
+
+<?= $this->renderSection('content') ?>
+
+
+Digunakan untuk menampilkan isi halaman yang berbeda-beda
+
+### 3. Modifikasi View (Home)
+
+File:
+
+
+app/Views/home.php
+
+
+Perubahan:
+
+
+<?= $this->extend('layout/main') ?>
+
+<?= $this->section('content') ?>
+
+<h1><?= $title; ?></h1>
+<p><?= $content; ?></p>
+
+<?= $this->endSection() ?>
+
+
+Penjelasan:
+
+* extend() → menggunakan layout utama
+* section() → isi konten halaman
+---
+
+### 4. Membuat View Cell
+
+Folder:
+
+
+app/Cells/
+
+
+File:
+
+
+ArtikelTerkini.php
+
+
+Fungsi:
+
+* Mengambil data artikel terbaru dari database
+* Menampilkan 5 artikel terbaru
+
+Kode penting:
+
+
+$model->orderBy('created_at', 'DESC')->limit(5)->findAll();
+
+---
+
+### 5. Membuat Komponen View
+
+Folder:
+
+
+app/Views/components/
+
+
+File:
+
+
+artikel_terkini.php
+
+
+Fungsi:
+
+* Menampilkan daftar artikel dalam bentuk list
+
+---
+
+### 6. Menampilkan View Cell di Layout
+
+File:
+
+
+layout/main.php
+
+
+Tambahkan:
+
+
+<?= view_cell('App\\Cells\\ArtikelTerkini::render') ?>
+
+
+Penjelasan:
+
+* Memanggil komponen artikel terbaru
+* Bisa digunakan berulang di halaman lain
+
+
+### 1. Apa manfaat View Layout?
+
+View Layout memudahkan pembuatan tampilan website karena:
+
+* Template bisa digunakan berulang
+* Kode lebih rapi dan terstruktur
+* Memisahkan desain dan konten
+
+---
+
+### 2. Perbedaan View Cell dan View biasa
+
+| View Biasa                    | View Cell                      |
+| ----------------------------- | ------------------------------ |
+| Digunakan untuk halaman utama | Digunakan untuk komponen kecil |
+| Tidak reusable                | Bisa digunakan berulang        |
+| Dipanggil langsung            | Dipanggil dengan view_cell() |
+
+---
+
+### 3. Menampilkan kategori tertentu
+
+Contoh modifikasi:
+
+
+$model->where('kategori', 'teknologi')
+      ->orderBy('created_at', 'DESC')
+      ->limit(5)
+      ->findAll();
+
+
+Penjelasan:
+
+* Hanya menampilkan artikel dengan kategori tertentu
+
+---
+
+## Kesimpulan
+
+Pada praktikum ini saya memahami bahwa:
+
+* View Layout membuat tampilan lebih efisien
+* View Cell membantu membuat komponen modular
+* CodeIgniter 4 mendukung pengembangan aplikasi yang lebih terstruktur
+
+<img width="1114" height="546" alt="Cuplikan layar 2026-04-02 161229" src="https://github.com/user-attachments/assets/8534d712-efde-48f1-9325-bf6918f6dddc" />
+<img width="1066" height="527" alt="Cuplikan layar 2026-04-02 161250" src="https://github.com/user-attachments/assets/77121c8d-d63c-41b6-92d4-65492cc25431" />
+
+# Praktikum 4
+Langkah-Langkah Praktikum
+
+1. Membuat Database User
+
+Query:
+
+sql
+CREATE TABLE user (
+  id INT(11) auto_increment,
+  username VARCHAR(200) NOT NULL,
+  useremail VARCHAR(200),
+  userpassword VARCHAR(200),
+  PRIMARY KEY(id)
+);
+
+
+Penjelasan:
+
+* Tabel ini digunakan untuk menyimpan data user
+* Password disimpan dalam bentuk *hash (aman)*
+
+---
+
+2. Membuat Model User
+
+Lokasi:
+
+bash
+app/Models/UserModel.php
+
+Fungsi:
+
+* Menghubungkan aplikasi dengan tabel user
+* Mengelola data login
+
+Bagian penting:
+
+php
+protected $allowedFields = ['username', 'useremail', 'userpassword'];
+
+---
+
+3. Membuat Controller User
+
+Lokasi:
+
+bash
+app/Controllers/User.php
+
+Method:
+
+* index() → menampilkan data user
+* login() → proses autentikasi
+* logout() → keluar dari sistem
+
+Proses login:
+
+1. Ambil input email & password
+2. Cek ke database
+3. Verifikasi password (password_verify)
+4. Simpan session jika berhasil
+
+Contoh session:
+
+php
+'session' => [
+    'logged_in' => TRUE
+]
+
+4. Membuat View Login
+
+Lokasi:
+
+bash
+app/Views/user/login.php
+
+Fungsi:
+
+* Menampilkan form login
+* Input email & password
+
+Fitur:
+
+* Menampilkan error (flashdata)
+* Form validasi sederhana
+
+
+---
+
+5. Membuat Seeder (Data Dummy)
+
+Command:
+
+bash
+php spark make:seeder UserSeeder
+php spark db:seed UserSeeder
+
+
+Fungsi:
+
+* Menambahkan user otomatis ke database
+* Mempermudah testing login
+
+Data:
+
+* Email: [admin@email.com](mailto:admin@email.com)
+* Password: admin123
+---
+
+6. Membuat Auth Filter
+
+Lokasi:
+
+bash
+app/Filters/Auth.php
+
+
+Fungsi:
+
+* Melindungi halaman admin
+* Redirect ke login jika belum login
+
+Logika:
+
+php
+if(! session()->get('logged_in')){
+    return redirect()->to('/user/login');
+}
+
+---
+
+7. Konfigurasi Filter
+
+File:
+
+bash
+app/Config/Filters.php
+
+
+Tambahkan:
+
+php
+'auth' => App\Filters\Auth::class
+
+---
+
+8. Uji Coba Login
+
+URL:
+
+
+http://localhost:8080/user/login
+
+
+Hasil:
+
+* Jika login berhasil → masuk ke halaman admin
+* Jika gagal → muncul pesan error
+
+
+9. Fungsi Logout
+
+Tambahkan:
+
+php
+public function logout()
+{
+    session()->destroy();
+    return redirect()->to('/user/login');
+}
+
+
+Fungsi:
+
+* Menghapus session
+* Kembali ke halaman login
+
+## Landasan Teori
+
+1. Authentication (Auth)
+
+Authentication adalah proses untuk memastikan bahwa pengguna adalah *orang yang valid* sebelum mengakses sistem.
+
+Contoh:
+
+* Login menggunakan email & password
+
+Tujuan:
+
+* Mengamankan data
+* Membatasi akses pengguna
+
+---
+
+2. Authorization
+
+Authorization adalah proses menentukan *hak akses pengguna* setelah login.
+
+Contoh:
+
+* Admin bisa akses dashboard
+* User biasa tidak bisa
+
+---
+
+3. Session Management
+
+Session digunakan untuk menyimpan data sementara pengguna setelah login.
+
+Fungsi:
+
+* Menyimpan status login
+* Menyimpan data user
+
+Contoh:
+
+php
+session()->set([
+    'logged_in' => TRUE
+]);
+
+
+---
+
+4. Password Hashing
+
+Password tidak disimpan dalam bentuk asli, tetapi diubah menjadi hash.
+
+Fungsi:
+
+* Mencegah pencurian password
+* Meningkatkan keamanan
+
+Digunakan:
+
+* password_hash()
+* password_verify()
+
+---
+
+5. Filter pada CodeIgniter 4
+
+Filter adalah mekanisme untuk menyaring request sebelum atau sesudah controller dijalankan.
+
+Jenis:
+
+* Before Filter → sebelum akses halaman
+* After Filter → setelah proses selesai
+
+---
+
+6. Keamanan Aplikasi Web
+
+Dalam sistem login, keamanan sangat penting:
+
+* Validasi input
+* Hash password
+* Session protection
+* Filter akses
+
+---
+
+## Analisis
+
+Dari praktikum ini dapat disimpulkan bahwa:
+
+* Sistem login adalah bagian penting dalam aplikasi web
+* Filter membantu membatasi akses pengguna
+* Session digunakan untuk menjaga status login
+
+---
+
+## Kesimpulan
+
+Dengan menggunakan CodeIgniter 4, pembuatan sistem login menjadi lebih mudah dan terstruktur. Fitur seperti Model, Controller, Session, dan Filter sangat membantu dalam membangun sistem autentikasi yang aman dan efisien.
+<img width="806" height="429" alt="Cuplikan layar 2026-04-02 161451" src="https://github.com/user-attachments/assets/e88fd529-1afb-410c-bffc-e8224599fff5" />
