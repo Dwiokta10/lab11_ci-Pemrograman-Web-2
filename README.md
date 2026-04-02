@@ -208,4 +208,233 @@ Tambahkan CSS di folder:
 public/style.css
 ```
 
+
+
+
 ## Pertemuan 2
+## ⚙️ 1. Persiapan Awal
+
+Langkah pertama yang saya lakukan:
+
+* Menyalakan *Apache dan MySQL di XAMPP*
+* Membuka *phpMyAdmin*
+
+Kenapa ini penting?
+Karena tanpa database aktif, aplikasi tidak bisa menyimpan data.
+
+---
+
+## 🗄️ 2. Membuat Database dan Tabel
+
+Saya membuat database:
+
+sql
+CREATE DATABASE lab_ci4;
+
+
+Kemudian membuat tabel artikel.
+
+🧠 *Cara saya memahami bagian ini:*
+Saya menganggap tabel ini seperti “tempat penyimpanan artikel”, jadi saya menentukan kolom yang dibutuhkan:
+
+* id → penanda unik
+* judul → judul artikel
+* isi → isi konten
+* slug → URL yang rapi
+* status → status publish
+* gambar → gambar artikel
+
+👉 Jadi dari awal saya sudah berpikir:
+*“Data apa saja yang dibutuhkan oleh aplikasi?”*
+
+---
+
+## 🔌 3. Menghubungkan Database ke CodeIgniter
+
+Selanjutnya saya konfigurasi file .env
+
+Kenapa pakai .env?
+Karena lebih aman dan fleksibel dibanding langsung di config.
+
+🧠 *Alur berpikirnya:*
+
+* CodeIgniter itu aplikasi
+* Database itu tempat data
+* Jadi harus ada “jembatan” → yaitu konfigurasi koneksi
+
+---
+
+## 🧩 4. Membuat Model (Penghubung ke Database)
+
+Saya membuat ArtikelModel.
+
+🧠 *Pemahaman saya:*
+Model ini ibarat “perantara” antara aplikasi dan database.
+
+Jadi:
+
+* Controller *tidak langsung ke database*
+* Tapi lewat Model
+
+Kenapa begitu?
+👉 Supaya kode lebih rapi dan terstruktur (konsep MVC)
+
+---
+
+## 🎮 5. Membuat Controller (Pengatur Alur)
+
+Saya membuat controller Artikel.
+
+Di sini saya mulai memahami alur sebenarnya:
+
+👉 User buka halaman →
+👉 Controller menerima request →
+👉 Controller ambil data dari Model →
+👉 Controller kirim ke View
+
+🧠 *Kesimpulan saya:*
+Controller adalah “otak” dari aplikasi
+
+---
+
+## 👀 6. Menampilkan Data (READ)
+
+Saat membuat method index():
+
+Saya mengambil semua data:
+
+php
+$model->findAll();
+
+
+🧠 *Cara saya memahami:*
+
+* Ini adalah proses *READ*
+* Menampilkan semua artikel dari database ke halaman web
+
+---
+
+## ➕ 7. Menambah Data (CREATE)
+
+Saat membuat fitur tambah artikel:
+
+🧠 *Alurnya saya pahami seperti ini:*
+
+1. User isi form
+2. Data dikirim ke controller
+3. Controller kirim ke model
+4. Model simpan ke database
+
+👉 Jadi benar-benar terlihat alur data berjalan
+
+---
+
+## ✏️ 8. Mengubah Data (UPDATE)
+
+Saat edit artikel:
+
+🧠 *Pemahaman saya:*
+
+* Ambil data lama dari database
+* Tampilkan di form
+* User ubah
+* Simpan kembali
+
+👉 Ini penting karena data tidak langsung diubah tanpa ditampilkan dulu
+
+---
+
+## ❌ 9. Menghapus Data (DELETE)
+
+Saat klik hapus:
+
+🧠 *Alurnya:*
+
+* Ambil ID artikel
+* Kirim ke controller
+* Controller perintahkan model untuk hapus
+
+👉 Ini proses paling sederhana tapi sangat penting dalam CRUD
+
+---
+
+## 🔗 10. Routing (Penghubung URL ke Controller)
+
+Saya menambahkan routing untuk:
+
+* Halaman artikel
+* Detail artikel
+* Admin
+
+🧠 *Pemahaman saya:*
+Routing itu seperti “penunjuk jalan”
+Contoh:
+
+
+/artikel → ke controller Artikel
+
+
+---
+
+## 🔐 11. Halaman Admin (Tempat CRUD)
+
+Saya membuat halaman admin untuk:
+
+* Lihat data
+* Tambah
+* Edit
+* Hapus
+
+🧠 *Kenapa dipisah dari user biasa?*
+Karena:
+👉 User biasa hanya melihat
+👉 Admin yang mengelola data
+
+---
+
+## 🔄 12. Alur Lengkap Aplikasi (INI YANG PALING PENTING)
+
+Ini bagian yang bikin dosen yakin kamu paham:
+
+👉 User membuka halaman
+→ Request masuk ke *Controller*
+→ Controller meminta data ke *Model*
+→ Model mengambil data dari *Database*
+→ Data dikirim kembali ke Controller
+→ Controller kirim ke *View*
+→ View menampilkan ke user
+
+🔥 Jadi alurnya:
+*User → Controller → Model → Database → Controller → View → User*
+
+---
+
+## ✅ Kesimpulan (Versi “Paham Banget”)
+
+Dari praktikum ini saya memahami bahwa:
+
+* CodeIgniter menggunakan konsep *MVC* untuk memisahkan logic
+* CRUD adalah dasar dari hampir semua aplikasi web
+* Setiap bagian punya peran:
+
+  * Model → data
+  * View → tampilan
+  * Controller → pengatur alur
+
+Saya juga memahami bagaimana data mengalir dari user hingga ke database dan kembali ditampilkan ke user.
+
+---
+
+## 💡 BONUS BIAR DOSEN MAKIN YAKIN
+
+Tambahin ini di akhir:
+
+> Dalam praktikum ini saya tidak hanya mengikuti langkah-langkah, tetapi mencoba memahami alur kerja setiap bagian sehingga saya dapat mengerti bagaimana sebuah aplikasi web sederhana dibangun menggunakan konsep MVC dan CRUD.
+
+---
+
+Kalau kamu mau next level lagi aku bisa bantu:
+🔥 Simulasi kamu ditanya dosen + jawabannya
+🔥 Atau bantu cek project kamu (biar gak error lagi kayak kemarin)
+
+Tinggal bilang aja 👍
