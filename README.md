@@ -19,8 +19,7 @@ Pada praktikum ini, saya mempelajari:
 ## Langkah-langkah Pertemuan 1 
 
 1. Persiapan
-
-Sebelum memulai, saya melakukan konfigurasi pada XAMPP:
+   Sebelum memulai, saya melakukan konfigurasi pada XAMPP:
 Mengaktifkan ekstensi PHP:
 
   * php-json
